@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import AllBlogs from "../blogs/AllBlogs";
 
@@ -17,8 +16,8 @@ const dashboardCards = [
   },
   {
     id: "3",
-    title: "Manage drafts",
-    description: "Keep your drafts organized and ready to publish.",
+    title: "Update your blogs",
+    description: "Keep your content fresh by editing existing posts.",
     image: "/file.svg",
   },
 ];
@@ -43,8 +42,7 @@ const Dashboard = () => {
       </section>
 
       <section className="px-3 sm:px-6 py-8">
-        {" "}
-        <AllBlogs />{" "}
+        <AllBlogs />
       </section>
 
       <section className="max-w-6xl mx-auto px-3 sm:px-6 py-8">

@@ -29,6 +29,8 @@ const BlogDetails = () => {
       const res: any = await api.get(`/api/userBlogDetails/${id}`);
       if (res.status === 200) {
         setDetails(res.blog);
+      } else {
+        toast.error(res.message || "Failed to fetch blog details");
       }
     } catch (error) {
       console.log("error: ", error);

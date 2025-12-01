@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useUser } from "../providers/UserProvider";
+import Link from "next/link";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -31,7 +32,10 @@ const Navbar = () => {
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center justify-start rtl:justify-end">
-                  <a href="localhost:3001" className="flex ms-2 md:me-24">
+                  <a
+                    href="content-hub-eight.vercel.app"
+                    className="flex ms-2 md:me-24"
+                  >
                     <Image
                       src="/contenthub.png"
                       className="h-8 me-3"
@@ -100,13 +104,13 @@ const Navbar = () => {
                             </a>
                           </li>
                           <li>
-                            <a
+                            <Link
                               href="/myblogs"
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                               role="menuitem"
                             >
                               My Blogs
-                            </a>
+                            </Link>
                           </li>
                           <li>
                             <a

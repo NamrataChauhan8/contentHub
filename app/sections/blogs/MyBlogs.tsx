@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { api } from "@/app/functions/api";
 import { toast } from "react-toastify";
 import BlogDescription from "@/app/utils/convert";
+import Pagination from "@/app/components/Pagination";
+import usePagination from "@/app/hooks/usePagination";
 
 interface Blog {
   id: string;
@@ -43,6 +45,21 @@ const MyBlogs: React.FC = () => {
       isMounted = false;
     };
   }, []);
+
+  const {
+    paginated,
+    currentPage,
+    pageSize,
+    setPageSize,
+    total,
+    totalPages,
+    goTo,
+    prev,
+    next,
+  } = usePagination<Blog>(blogs, {
+    initialPageSize: 5,
+    resetOnItemsChange: true,
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -94,8 +111,20 @@ const MyBlogs: React.FC = () => {
             No blogs available
           </p>
         ) : (
-          <div
-            className="
+          <>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              pageSize={pageSize}
+              setPageSize={setPageSize}
+              goTo={goTo}
+              prev={prev}
+              next={next}
+              total={total}
+              pageSizeOptions={[5, 10, 25, 50]}
+            />
+            <div
+              className="
               grid
               grid-cols-1
               sm:grid-cols-2
@@ -103,11 +132,11 @@ const MyBlogs: React.FC = () => {
               gap-4
               sm:gap-6
             "
-          >
-            {blogs.map((blog) => (
-              <div
-                key={blog.id}
-                className="
+            >
+              {paginated?.map((blog) => (
+                <div
+                  key={blog.id}
+                  className="
                   flex flex-col justify-between
                   p-4 sm:p-5
                   bg-white dark:bg-gray-800
@@ -116,57 +145,58 @@ const MyBlogs: React.FC = () => {
                   hover:shadow-md transition-shadow
                   min-h-[180px]
                 "
-              >
-                <div className="mb-3">
-                  <h2
-                    className="
+                >
+                  <div className="mb-3">
+                    <h2
+                      className="
                       text-base xs:text-lg sm:text-lg md:text-xl
                       font-semibold tracking-tight
                       text-gray-900 dark:text-white
                       mb-2 line-clamp-2
                     "
-                  >
-                    {blog.title}
-                  </h2>
+                    >
+                      {blog.title}
+                    </h2>
 
-                  <div
-                    className="
+                    <div
+                      className="
                       text-sm text-gray-700 dark:text-gray-300
                       prose prose-sm max-w-none line-clamp-3
                     "
-                  >
-                    <BlogDescription html={blog.description || ""} />
+                    >
+                      <BlogDescription html={blog.description || ""} />
+                    </div>
                   </div>
-                </div>
 
-                <a
-                  href={`/myblogs/${blog.id}`}
-                  className="
+                  <a
+                    href={`/myblogs/${blog.id}`}
+                    className="
                     inline-flex items-center text-sm font-medium
                     text-blue-700 hover:text-blue-800
                     dark:text-blue-400 dark:hover:text-blue-300
                   "
-                >
-                  Read more
-                  <svg
-                    className="w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </a>
-              </div>
-            ))}
-          </div>
+                    Read more
+                    <svg
+                      className="w-3.5 h-3.5 ms-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </section>
     </div>
