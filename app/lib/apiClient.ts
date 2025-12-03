@@ -1,3 +1,4 @@
+// interceptor.ts
 import axios from "axios";
 
 const apiClient = axios.create({
@@ -8,12 +9,17 @@ apiClient.interceptors.response.use(
   (res) => res,
   (error) => {
     const status = error?.response?.status;
+    const reqUrl: string = error?.config?.url || "";
 
-    if ([401].includes(status)) {
-      window.location.assign("/api/auth/signout?callbackUrl=/api/auth/signin");
+    // Don't trigger a redirect loop for the auth-check endpoint
+    const isAuthCheck = reqUrl.endsWith("/api/me") || reqUrl.includes("/api/auth/session");
+
+    if (status === 401 && !isAuthCheck) {
+      // for non-auth-check requests, redirect to homepage
+      window.location.assign("/");
     }
 
-    if ([403].includes(status)) {
+    if (status === 403) {
       window.location.assign("/e403");
     }
 

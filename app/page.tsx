@@ -1,4 +1,9 @@
 import Image from "next/image";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: `Content Hub`,
+};
 
 export default function Home() {
   return (
@@ -23,8 +28,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://content-hub-eight.vercel.app/api/auth/signout?callbackUrl=/api/auth/signin?callbackUrl=/dashboard"
-            target="_blank"
+            href="http://localhost:3001/api/auth/signin?callbackUrl=/dashboard"
             rel="noopener noreferrer"
           >
             <Image
@@ -38,8 +42,7 @@ export default function Home() {
           </a>
           <a
             className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://content-hub-eight.vercel.app/signup"
-            target="_blank"
+            href="http://localhost:3001/signup"
             rel="noopener noreferrer"
           >
             Signup

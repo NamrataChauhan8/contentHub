@@ -20,9 +20,9 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleLogout = async () => {
+  async function logout() {
     await signOut({ callbackUrl: "/" });
-  };
+  }
 
   return (
     <>
@@ -32,10 +32,7 @@ const Navbar = () => {
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center justify-start rtl:justify-end">
-                  <a
-                    href="content-hub-eight.vercel.app"
-                    className="flex ms-2 md:me-24"
-                  >
+                  <a href="localhost:3001" className="flex ms-2 md:me-24">
                     <Image
                       src="/contenthub.png"
                       className="h-8 me-3"
@@ -123,7 +120,7 @@ const Navbar = () => {
                           </li>
                           <li>
                             <button
-                              onClick={handleLogout}
+                              onClick={logout}
                               className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                               role="menuitem"
                             >

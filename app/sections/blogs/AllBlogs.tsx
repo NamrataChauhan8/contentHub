@@ -5,10 +5,17 @@ import { api } from "@/app/functions/api";
 import usePagination from "@/app/hooks/usePagination";
 import BlogDescription from "@/app/utils/convert";
 import { Blog } from "@prisma/client";
-import React, { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import moment from "moment";
+import { FcLike } from "react-icons/fc";
+import { GoHeart } from "react-icons/go";
+import { useUser } from "@/app/providers/UserProvider";
 
 const AllBlogs = () => {
+  const { user }: any = useUser();
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,6 +46,31 @@ const AllBlogs = () => {
       isMounted = false;
     };
   }, []);
+
+  const handleLikeToggle = async (id: string) => {
+    try {
+      const payload = { blogId: id, userId: user?.id }; // Replace with actual current user ID
+      const res: any = await api.post("/api/toggleLike", payload);
+      if (res?.status === 200) {
+        toast.success(res.message);
+        setBlogs((prevBlogs) =>
+          prevBlogs.map((blog) =>
+            blog.id === id
+              ? {
+                  ...blog,
+                  likeCount: res.likeCount,
+                  likedBy: res.likedBy,
+                }
+              : blog
+          )
+        );
+      } else {
+        toast.error("Failed to toggle like");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const {
     paginated,
@@ -122,16 +154,28 @@ const AllBlogs = () => {
                 "
               >
                 <div className="mb-3">
-                  <h2
-                    className="
+                  <div className="flex justify-between items-start">
+                    <h2
+                      className="
                       text-base xs:text-lg sm:text-lg md:text-xl
                       font-semibold tracking-tight
                       text-gray-900 dark:text-white
                       mb-2 line-clamp-2
                     "
-                  >
-                    {blog?.title}
-                  </h2>
+                    >
+                      {blog?.title}
+                    </h2>
+                    <div
+                      onClick={() => handleLikeToggle(blog.id)}
+                      className="cursor-pointer"
+                    >
+                      {blog?.likedBy.includes(user?.id) ? (
+                        <FcLike className="w-6 h-6" />
+                      ) : (
+                        <GoHeart className="w-6 h-6" />
+                      )}
+                    </div>
+                  </div>
 
                   <div
                     className="
@@ -143,31 +187,28 @@ const AllBlogs = () => {
                   </div>
                 </div>
 
-                <a
-                  href={`/myblogs/${blog.id}`}
-                  className="
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={`/myblogs/${blog.id}`}
+                    className="
                     inline-flex items-center text-sm font-medium
                     text-blue-700 hover:text-blue-800
                     dark:text-blue-400 dark:hover:text-blue-300
                   "
-                >
-                  Read more
-                  <svg
-                    className="w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </a>
+                    Read more
+                    <FaArrowRightLong className="ml-2" />
+                  </Link>
+
+                  <div
+                    className="
+                      text-xs
+                      text-gray-500 dark:text-gray-400
+                    "
+                  >
+                    {moment(blog.createdAt).format("MMM DD, YYYY")}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

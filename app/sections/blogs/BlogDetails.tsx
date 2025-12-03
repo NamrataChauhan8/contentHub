@@ -8,6 +8,9 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
+import { SiCircuitverse } from "react-icons/si";
+import { GiBank, GiHealthNormal, GiRollingSuitcase } from "react-icons/gi";
+import { FaUmbrellaBeach } from "react-icons/fa6";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -16,6 +19,7 @@ const BlogDetails = () => {
 
   const [details, setDetails] = useState({
     title: "",
+    category: "",
     description: "",
     image: null,
     userId: "",
@@ -58,6 +62,27 @@ const BlogDetails = () => {
     }
   };
 
+  const ICON_CLASS = "w-6 h-6";
+
+  const handleCategoryIcon = (category: string) => {
+    const cls = ICON_CLASS + " inline-block";
+    switch (category.toLowerCase()) {
+      case "technology":
+        return <SiCircuitverse className={cls} />;
+      case "health":
+        return <GiHealthNormal className={cls} />;
+      case "lifestyle":
+        return <GiRollingSuitcase className={cls} />;
+      case "finance":
+        return <GiBank className={cls} />;
+      case "travel":
+        return <FaUmbrellaBeach className={cls} />;
+
+      default:
+        return null;
+    }
+  };
+
   const isAuthor = user?.id === details?.userId;
   return (
     <main className="min-h-screen relative">
@@ -71,11 +96,20 @@ const BlogDetails = () => {
             </h1>
           </div>
         </div>
+        {details?.category !== "" && (
+          <div className="bg-black">
+            <p className="absolute bottom-4 left-4 bg-black hover:bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md transition-colors shadow-md text-sm flex items-center gap-2">
+              {handleCategoryIcon(details?.category)}
+              <span>{details?.category}</span>
+            </p>
+          </div>
+        )}
+
         {isAuthor && (
           <>
             <button
               onClick={() => router.push(`/myblogs/${id}/edit`)}
-              className="absolute bottom-4 right-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-md"
+              className="cursor-pointer absolute bottom-4 right-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-md"
               title="Edit Blog"
             >
               <MdEdit className="w-5 h-5" />
@@ -83,7 +117,7 @@ const BlogDetails = () => {
 
             <button
               onClick={() => setShowDeleteModal(true)}
-              className="absolute bottom-4 right-4 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-md"
+              className="cursor-pointer absolute bottom-4 right-4 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-md"
               title="Delete Blog"
             >
               <MdDelete className="w-5 h-5" />

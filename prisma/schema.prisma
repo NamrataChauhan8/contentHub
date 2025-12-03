@@ -60,11 +60,15 @@ model VerificationToken {
 model Blog {
     id          String   @id @default(auto()) @map("_id") @db.ObjectId
     title       String
+    category    String
     description String
     image       String?
     userId      String   @db.ObjectId
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
+
+    likedBy   String[]
+    likeCount Int      @default(0)
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

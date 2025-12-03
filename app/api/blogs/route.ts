@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const { title, description, image } = await req.json();
+    const { title, description, image, category } = await req.json();
 
     if (!title || !description) {
       return NextResponse.json(
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
         description,
         image: image || null,
         userId: token.sub,
+        category,
       },
     });
 

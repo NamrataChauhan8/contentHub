@@ -16,7 +16,7 @@ export async function PUT(
     }
 
     const { id } = await context.params;
-    const { title, description, image } = await req.json();
+    const { title, description, image, category } = await req.json();
 
     if (!id) {
       return NextResponse.json(
@@ -27,7 +27,7 @@ export async function PUT(
 
     const updatedBlog = await prisma.blog.update({
       where: { id },
-      data: { title, description, image },
+      data: { title, description, image, category },
     });
 
     return NextResponse.json({

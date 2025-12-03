@@ -29,13 +29,20 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  // inside UserProvider
   const fetchUser = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await api.get<{ user: User }>("/api/me");
-      setUser(response.user ?? null);
-    } catch {
-      setUser(null);
+      const response = await api.get<{ user: User }>("/api/me"); // assuming api is axios wrapper
+      setUser(response?.user ?? null);
+    } catch (error: any) {
+      const status = error?.response?.status;
+      if (status === 401) {
+        // unauthenticated — set null but DO NOT redirect (prevents loop)
+        setUser(null);
+      } else {
+        setUser(null); // fallback for other errors
+      }
     } finally {
       setLoading(false);
     }

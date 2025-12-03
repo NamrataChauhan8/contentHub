@@ -18,14 +18,16 @@ const EditBlog = () => {
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
     title: "",
+    category: "",
     description: "",
     image: "",
   });
 
-
   const fetchBlogDetails = async () => {
     try {
-      const res: any = await api.get(`/api/userBlogDetails/getEditBlogDetails/${id}`);
+      const res: any = await api.get(
+        `/api/userBlogDetails/getEditBlogDetails/${id}`
+      );
       if (res.status === 200) {
         setDetails(res.blog);
       }
@@ -98,6 +100,7 @@ const EditBlog = () => {
         title: details.title.trim(),
         description: details.description.trim(),
         image: imageUrl,
+        category: details.category,
       });
 
       toast.success("Blog updated successfully!");
@@ -148,6 +151,30 @@ const EditBlog = () => {
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
               required
             />
+          </div>
+          <div>
+            <label
+              htmlFor="category"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              <b>Category</b> <span className="text-red-500">*</span>
+            </label>
+            <select
+              id="category"
+              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
+              value={details.category}
+              onChange={(e) =>
+                setDetails({ ...details, category: e.target.value })
+              }
+              required
+            >
+              <option value="">Select a category</option>
+              <option value="Technology">Technology</option>
+              <option value="Health">Health</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Finance">Finance</option>
+              <option value="Travel">Travel</option>
+            </select>
           </div>
 
           <div>

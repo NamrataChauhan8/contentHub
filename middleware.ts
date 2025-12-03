@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // If user is authenticated and visits home page, redirect to dashboard
-  if (pathname === "/" && token) {
+  if ((pathname === "/" || pathname === "/signup") && token) {
     const dashboardUrl = new URL("/dashboard", req.url);
     return NextResponse.redirect(dashboardUrl);
   }
@@ -30,5 +30,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/dashboard/:path*", "/api/auth/signin"],
+  matcher: ["/", "/dashboard/:path*", "/api/auth/signin", "/signup"],
 };
