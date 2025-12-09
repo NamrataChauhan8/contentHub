@@ -15,13 +15,13 @@
 // export default E403;
 
 // ** Next JS Imports
-import E403 from "@/components/e403";
-import { Metadata } from "next/types";
+import E403 from '@/components/e403'
+import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
-  title: `403 | Content Hub`,
-};
+  title: `403 | Content Hub`
+}
 
-const Page = () => <E403 />;
+const Page = () => <E403 />
 
-export default Page;
+export default Page

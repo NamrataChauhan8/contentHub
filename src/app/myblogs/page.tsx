@@ -1,11 +1,11 @@
 // ** Next JS Imports
-import MyBlogs from "@/sections/blogs/MyBlogs";
-import { Metadata } from "next/types";
+import MyBlogs from '@/sections/blogs/MyBlogs'
+import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
-  title: `My Blogs | Content Hub`,
-};
+  title: `My Blogs | Content Hub`
+}
 
-const Page = () => <MyBlogs />;
+const Page = () => <MyBlogs />
 
-export default Page;
+export default Page

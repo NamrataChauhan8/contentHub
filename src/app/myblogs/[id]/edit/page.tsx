@@ -1,10 +1,10 @@
-import EditBlog from "@/sections/blogs/EditBlog";
-import { Metadata } from "next/types";
+import EditBlog from '@/sections/blogs/EditBlog'
+import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
-  title: `Edit Blog | Content Hub`,
-};
+  title: `Edit Blog | Content Hub`
+}
 
-const Page = () => <EditBlog />;
+const Page = () => <EditBlog />
 
-export default Page;
+export default Page
