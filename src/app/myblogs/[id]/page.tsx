@@ -1,10 +1,10 @@
-import BlogDetails from "@/sections/blogs/BlogDetails";
-import { Metadata } from "next/types";
+import BlogDetails from '@/sections/blogs/BlogDetails'
+import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
-  title: `Details | Content Hub`,
-};
+  title: `Details | Content Hub`
+}
 
-const Page = () => <BlogDetails />;
+const Page = () => <BlogDetails />
 
-export default Page;
+export default Page

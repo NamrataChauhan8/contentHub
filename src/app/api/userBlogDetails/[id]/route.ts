@@ -1,6 +1,6 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../../../prisma/client";
+import { getToken } from 'next-auth/jwt'
+import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '../../../../../prisma/client'
 
 export async function GET(req: NextRequest) {
   // return withAuth(req, async ({ userId }) => {
@@ -26,20 +26,20 @@ export async function GET(req: NextRequest) {
 
   // Temporary: Allow access without authorization
 
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
   if (!token || !token.sub) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
   }
-  const id = req.nextUrl.pathname.split("/").pop();
+  const id = req.nextUrl.pathname.split('/').pop()
 
   const blog = await prisma.blog.findUnique({
-    where: { id },
-  });
+    where: { id }
+  })
 
   if (!blog) {
-    return NextResponse.json({ message: "Blog not found" }, { status: 404 });
+    return NextResponse.json({ message: 'Blog not found' }, { status: 404 })
   }
 
-  return NextResponse.json({ blog, status: 200 });
+  return NextResponse.json({ blog, status: 200 })
 }
