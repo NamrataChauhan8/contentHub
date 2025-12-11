@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
@@ -19,21 +20,21 @@ export default function Home() {
           </p>
         </div>
         <div className='flex flex-col gap-4 text-base font-medium sm:flex-row'>
-          <a
+          <Link
             className='flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]'
-            href='http://localhost:3001/api/auth/signin?callbackUrl=/dashboard'
             rel='noopener noreferrer'
+            href={'/api/auth/signin?callbackUrl=/dashboard'}
           >
             <Image className='dark:invert' src='/vercel.svg' alt='Vercel logomark' width={16} height={16} />
             Login
-          </a>
-          <a
+          </Link>
+          <Link
             className='flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]'
-            href='http://localhost:3001/signup'
             rel='noopener noreferrer'
+            href={'/signup'}
           >
             Signup
-          </a>
+          </Link>
         </div>
       </main>
     </div>

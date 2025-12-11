@@ -47,7 +47,7 @@ const Navbar = () => {
             <div className='px-3 py-3 lg:px-5 lg:pl-3'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center justify-start rtl:justify-end'>
-                  <Link href='localhost:3001' className='flex ms-2 md:me-24'>
+                  <Link href='/' className='flex ms-2 md:me-24'>
                     <Image src='/contenthub.png' className='h-8 me-3' alt='Content Hub Logo' width={70} height={100} />
                   </Link>
                 </div>
