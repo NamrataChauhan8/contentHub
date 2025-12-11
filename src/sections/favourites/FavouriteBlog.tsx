@@ -1,5 +1,6 @@
 'use client'
 import Pagination from '@/components/Pagination'
+import Searchbar from '@/components/Searchbar'
 import { api } from '@/functions/api'
 import usePagination from '@/hooks/usePagination'
 import { useUser } from '@/providers/UserProvider'
@@ -77,6 +78,23 @@ const FavouriteBlog = () => {
     }
   }
 
+  const handleSearch = async (title: string, category: string) => {
+    try {
+      if (!user) {
+        return
+      }
+      const res: any = await api.get(`/api/search?title=${title}&category=${category}&isLiked=true&userId=${user?.id}`)
+      if (res?.status === 200) {
+        setBlogs(Array.isArray(res.data) ? res.data : [])
+      } else {
+        toast.error('Failed to fetch blog data')
+      }
+    } catch (error) {
+      console.error('Error fetching blogs:', error)
+      toast.error('Something went wrong while fetching blogs')
+    }
+  }
+
   const { paginated, currentPage, pageSize, setPageSize, total, totalPages, goTo, prev, next } = usePagination<Blog>(
     blogs,
     {
@@ -103,6 +121,10 @@ const FavouriteBlog = () => {
           </div>
         </div>
       </section>
+
+      <div className='mb-4'>
+        <Searchbar onSearch={handleSearch} />
+      </div>
 
       {/* Blog Listing */}
       <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
