@@ -88,7 +88,10 @@ const MyBlogs: React.FC = () => {
 
   const handleSearch = async (title: string, category: string) => {
     try {
-      const res: any = await api.get(`/api/search?title=${title}&category=${category}`)
+      if (!user) {
+        return
+      }
+      const res: any = await api.get(`/api/search?title=${title}&category=${category}&userId=${user?.id}`)
       if (res?.status === 200) {
         setBlogs(Array.isArray(res.data) ? res.data : [])
       } else {

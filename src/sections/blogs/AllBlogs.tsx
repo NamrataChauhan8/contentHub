@@ -50,7 +50,7 @@ const AllBlogs = () => {
 
   const handleLikeToggle = async (id: string) => {
     try {
-      const payload = { blogId: id, userId: user?.id } // Replace with actual current user ID
+      const payload = { blogId: id, userId: user?.id }
       const res: any = await api.post('/api/toggleLike', payload)
       if (res?.status === 200) {
         toast.success(res.message)
