@@ -25,6 +25,7 @@ const EditBlog = () => {
   })
 
   const fetchBlogDetails = async () => {
+    setLoading(true)
     try {
       const res: any = await api.get(`/api/userBlogDetails/getEditBlogDetails/${id}`)
       if (res.status === 200) {
@@ -32,6 +33,8 @@ const EditBlog = () => {
       }
     } catch (error) {
       console.log('error: ', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -98,7 +101,7 @@ const EditBlog = () => {
       await api.put(`/api/blogs/${id}`, {
         title: details.title.trim(),
         description: details.description.trim(),
-        image: imageUrl,
+        image: imageUrl ? imageUrl : details.image,
         category: details.category
       })
 

@@ -5,7 +5,7 @@ export async function GET(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
   if (!token) {
-    return NextResponse.json({ user: null, message: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ user: null, message: 'Unauthorized', status: 401 }, { status: 401 })
   }
 
   const user = {
