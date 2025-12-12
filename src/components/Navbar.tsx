@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useUser } from '../providers/UserProvider'
 import Link from 'next/link'
 import { PiUserCircleFill } from 'react-icons/pi'
+import logo from '../assets/images/contenthub.png'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -48,7 +49,7 @@ const Navbar = () => {
               <div className='flex items-center justify-between'>
                 <div className='flex items-center justify-start rtl:justify-end'>
                   <Link href='/' className='flex ms-2 md:me-24'>
-                    <Image src='/contenthub.png' className='h-8 me-3' alt='Content Hub Logo' width={70} height={100} />
+                    <Image src={logo} className='h-8 me-3' alt='Content Hub Logo' width={70} height={100} />
                   </Link>
                 </div>
                 <div className='flex items-center'>
