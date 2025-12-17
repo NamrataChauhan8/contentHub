@@ -7,6 +7,7 @@ import { useUser } from '../providers/UserProvider'
 import Link from 'next/link'
 import { PiUserCircleFill } from 'react-icons/pi'
 import logo from '../assets/images/contenthub.png'
+import { FiLogOut } from 'react-icons/fi'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -131,6 +132,7 @@ const Navbar = () => {
                               className='w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
                               role='menuitem'
                             >
+                              <FiLogOut className='inline me-2' />
                               Logout
                             </button>
                           </li>
