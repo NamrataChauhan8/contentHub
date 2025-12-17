@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import AllBlogs from '@/sections/blogs/AllBlogs'
+import Footer from '@/components/Footer'
 
 const dashboardCards = [
   {
@@ -67,6 +68,7 @@ const Dashboard = () => {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
