@@ -128,7 +128,7 @@ const EditBlog = () => {
         </div>
       </section>
 
-      <section className='max-w-4xl mx-auto mb-8'>
+      <section className='max-w-4xl mx-auto mb-8 px-4'>
         <form onSubmit={handleSubmit} className='space-y-6'>
           <div>
             <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>

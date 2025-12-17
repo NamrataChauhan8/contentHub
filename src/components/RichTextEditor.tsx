@@ -172,6 +172,15 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
     setTimeout(checkActiveStates, 0)
   }
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+    e.preventDefault()
+
+    const text = e.clipboardData.getData('text/plain') || e.clipboardData.getData('text')
+    document.execCommand('insertText', false, text)
+    handleInput()
+    setTimeout(checkActiveStates, 0)
+  }
+
   return (
     <div className='border rounded-md overflow-hidden'>
       <style>{`
@@ -243,6 +252,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         dir='ltr'
         onInput={handleInput}
         onMouseUp={checkActiveStates}
+        onPaste={handlePaste}
         onKeyUp={checkActiveStates}
         onFocus={() => {
           setIsFocused(true)
