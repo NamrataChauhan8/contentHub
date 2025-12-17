@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Metadata } from 'next/types'
 import logo from '../assets/images/contenthub.png'
 import Footer from '@/components/Footer'
+import { FiLogIn } from 'react-icons/fi'
 
 export const metadata: Metadata = {
   title: `Content Hub`
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className='flex min-h-screen flex-col overflow-hidden bg-zinc-50 font-sans dark:bg-black'>
-      {/* Page content */}
       <div className='flex flex-1 items-center justify-center'>
         <div className='flex w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start'>
           <div className='mb-32'>
@@ -32,7 +32,7 @@ export default function Home() {
               className='flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]'
               href='/api/auth/signin?callbackUrl=/dashboard'
             >
-              <Image className='dark:invert' src='/vercel.svg' alt='Vercel logomark' width={16} height={16} />
+              <FiLogIn size={20} />
               Login
             </Link>
 
