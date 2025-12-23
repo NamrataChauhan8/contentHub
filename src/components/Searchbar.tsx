@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { TbCategoryFilled } from 'react-icons/tb'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { CATEGORY_OPTIONS } from '@/constants/constants'
+import { useUser } from '@/providers/UserProvider'
 
 const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) => void }) => {
   const [open, setOpen] = useState(false)
@@ -9,6 +10,7 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
   const [title, setTitle] = useState('')
 
   const containerRef: any = useRef(null)
+  const { user }: any = useUser()
 
   useEffect(() => {
     function onDocClick(e: any) {
@@ -34,7 +36,7 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
 
     return () => clearTimeout(timeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, category])
+  }, [title, category, user])
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.startsWith(' ')) return

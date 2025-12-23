@@ -58,7 +58,7 @@ const FavouriteBlog = () => {
 
   useEffect(() => {
     fetchFavourites()
-  }, [])
+  }, [user])
 
   const handleLikeToggle = async (id: string) => {
     try {

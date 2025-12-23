@@ -62,7 +62,7 @@ export default function Comments() {
     }
 
     fetchComments()
-  }, [id])
+  }, [id, user])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

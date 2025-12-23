@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { PiUserCircleFill } from 'react-icons/pi'
 import logo from '../assets/images/contenthub.png'
 import { FiLogOut } from 'react-icons/fi'
+import EditProfileModal from './modals/EditProfileModal'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [editOpen, setEditOpen] = useState(false)
 
   const hideSidebar = pathname === '/' || pathname === '/signup' || pathname === '/api/auth/signin'
 
@@ -128,6 +130,14 @@ const Navbar = () => {
                           </li>
                           <li>
                             <button
+                              onClick={() => setEditOpen(true)}
+                              className='w-full text-left block px-4 py-2 text-sm'
+                            >
+                              Edit Profile
+                            </button>
+                          </li>
+                          <li>
+                            <button
                               onClick={() => setShowModal(true)}
                               className='w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer'
                               role='menuitem'
@@ -144,6 +154,7 @@ const Navbar = () => {
               </div>
             </div>
           </nav>
+          <EditProfileModal open={editOpen} onClose={() => setEditOpen(false)} />
 
           {showModal && (
             <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>

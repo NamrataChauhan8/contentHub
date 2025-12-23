@@ -15,7 +15,6 @@ import Pagination from '@/components/Pagination'
 import BlogDescription from '@/utils/convert'
 import Searchbar from '@/components/Searchbar'
 import Image from 'next/image'
-import { count } from 'console'
 import { displayLikeCount } from '@/utils/functions'
 import { PiUserCircleFill } from 'react-icons/pi'
 
@@ -54,7 +53,7 @@ const AllBlogs = () => {
     return () => {
       isMounted = false
     }
-  }, [])
+  }, [user])
 
   const handleLikeToggle = async (id: string) => {
     try {

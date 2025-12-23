@@ -48,6 +48,24 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
       return NextResponse.json({ message: 'Blog ID is required' }, { status: 400 })
     }
 
+    // Verify the blog exists and belongs to the user
+    const blog = await prisma.blog.findUnique({
+      where: { id },
+      select: { userId: true }
+    })
+
+    if (!blog) {
+      return NextResponse.json({ message: 'Blog not found' }, { status: 404 })
+    }
+
+    if (blog.userId !== token.sub) {
+      return NextResponse.json({ message: 'Forbidden: You can only delete your own blogs' }, { status: 403 })
+    }
+
+    await prisma.comment.deleteMany({
+      where: { blogId: id }
+    })
+
     const deletedBlog = await prisma.blog.delete({
       where: { id }
     })
