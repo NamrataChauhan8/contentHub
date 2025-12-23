@@ -34,7 +34,16 @@ export async function GET(req: NextRequest) {
   const id = req.nextUrl.pathname.split('/').pop()
 
   const blog = await prisma.blog.findUnique({
-    where: { id }
+    where: { id },
+    include: {
+      user: {
+        select: {
+          name: true,
+          email: true,
+          image: true
+        }
+      }
+    }
   })
 
   if (!blog) {

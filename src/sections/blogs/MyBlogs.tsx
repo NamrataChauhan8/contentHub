@@ -14,6 +14,7 @@ import usePagination from '@/hooks/usePagination'
 import Pagination from '@/components/Pagination'
 import BlogDescription from '@/utils/convert'
 import Searchbar from '@/components/Searchbar'
+import { displayLikeCount } from '@/utils/functions'
 
 interface Blog {
   id: string
@@ -180,12 +181,16 @@ const MyBlogs: React.FC = () => {
                       <h2 className='text-base xs:text-lg sm:text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2 line-clamp-2 '>
                         {blog?.title}
                       </h2>
-                      <div onClick={() => handleLikeToggle(blog.id)} className='cursor-pointer'>
+                      <div
+                        onClick={() => handleLikeToggle(blog.id)}
+                        className='cursor-pointer flex flex-col text-xs items-center'
+                      >
                         {blog?.likedBy.includes(user?.id) ? (
                           <FcLike className='w-6 h-6' />
                         ) : (
                           <GoHeart className='w-6 h-6' />
                         )}
+                        <p>{displayLikeCount(blog?.likeCount || 0)}</p>
                       </div>
                     </div>
 

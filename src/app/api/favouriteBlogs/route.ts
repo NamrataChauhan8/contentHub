@@ -18,6 +18,11 @@ export async function GET(req: NextRequest) {
         likedBy: {
           has: token.sub
         }
+      },
+      include: {
+        user: {
+          select: { name: true, email: true, image: true }
+        }
       }
     })
 

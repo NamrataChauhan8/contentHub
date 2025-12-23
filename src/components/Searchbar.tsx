@@ -20,7 +20,14 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
     return () => document.removeEventListener('mousedown', onDocClick)
   }, [])
 
+  const isFirstRender = useRef(true)
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
     const timeout = setTimeout(() => {
       onSearch(title, category)
     }, 400)
@@ -28,6 +35,11 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
     return () => clearTimeout(timeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, category])
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.startsWith(' ')) return
+    setTitle(e.target.value)
+  }
 
   return (
     <div ref={containerRef} className='w-full px-3 sm:px-0 max-w-3xl mx-auto mt-6'>
@@ -87,7 +99,7 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
           type='search'
           placeholder='Search by Title'
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={handleTitleChange}
           className='flex-1 px-4 py-3 bg-white text-gray-900 placeholder:text-gray-400 outline-none text-sm w-full'
         />
       </div>

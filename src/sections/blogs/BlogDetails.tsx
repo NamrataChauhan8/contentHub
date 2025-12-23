@@ -13,19 +13,15 @@ import { useUser } from '@/providers/UserProvider'
 import BlogDescription from '@/utils/convert'
 import Comments from '../comments/Comments'
 import DeleteModal from '@/components/modals/DeleteModal'
+import moment from 'moment'
+import { IoArrowBack } from 'react-icons/io5'
 
 const BlogDetails = () => {
   const { id }: any = useParams()
   const router = useRouter()
   const { user } = useUser()
 
-  const [details, setDetails] = useState({
-    title: '',
-    category: '',
-    description: '',
-    image: null,
-    userId: ''
-  })
+  const [details, setDetails] = useState<any>({})
 
   const [showDeleteModal, setShowDeleteModal] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -72,6 +68,7 @@ const BlogDetails = () => {
   const ICON_CLASS = 'w-6 h-6'
 
   const handleCategoryIcon = (category: string) => {
+    if (!category) return null
     const cls = ICON_CLASS + ' inline-block'
     switch (category.toLowerCase()) {
       case 'technology':
@@ -94,19 +91,41 @@ const BlogDetails = () => {
   }
 
   const isAuthor = user?.id === details?.userId
+  const capitalizeName = (name: string) => name.toLowerCase().replace(/\b\w/g, char => char.toUpperCase())
+
   return (
-    <main className='min-h-screen relative'>
+    <main className='h-screen relative'>
       {/* HEADER SECTION */}
-      <section className='relative w-full h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-none sm:rounded-md mb-10'>
+      <section className='relative w-full h-80 overflow-hidden rounded-none sm:rounded-md mb-10'>
         <div className='absolute inset-0 bg-gradient-to-r from-[#1e8a56] to-[#1e3a8a]/30' />
         <div className='absolute inset-0 flex items-center justify-center px-6'>
           <div className='text-center'>
             <h1 className='text-white text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight'>
               {details?.title}
             </h1>
+            {details?.user?.name && (
+              <p className='mt-3 text-white/90 text-sm sm:text-base mx-auto font-semibold italic'>
+                By {capitalizeName(details?.user?.name)}
+              </p>
+            )}
+            {details?.createdAt && (
+              <p className='mt-3 text-white/90 text-sm mx-auto italic'>
+                Published on {moment(details?.createdAt).format('MMMM Do, YYYY')}
+              </p>
+            )}
           </div>
         </div>
-        {details?.category !== '' && (
+
+        <div className='bg-black'>
+          <p
+            className='absolute top-4 left-4 bg-black hover:bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md transition-colors shadow-md text-sm flex items-center gap-2 cursor-pointer'
+            onClick={() => router.back()}
+          >
+            <IoArrowBack className='w-5 h-5' />
+            <span>Back</span>
+          </p>
+        </div>
+        {details?.category && (
           <div className='bg-black'>
             <p className='absolute bottom-4 left-4 bg-black hover:bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md transition-colors shadow-md text-sm flex items-center gap-2'>
               {handleCategoryIcon(details?.category)}

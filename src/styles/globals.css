@@ -46,3 +46,14 @@ body {
 input[type='search']::-webkit-search-cancel-button {
   cursor: pointer;
 }
+
+.blog-content pre {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+  overflow-x: hidden !important;
+  max-width: 100%;
+}
+
+.blog-content code {
+  white-space: inherit;
+}

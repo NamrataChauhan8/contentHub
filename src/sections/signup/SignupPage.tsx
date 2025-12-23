@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
+import { api } from '@/functions/api'
 
 type FormValues = {
   name: string
@@ -47,35 +49,29 @@ export default function SignupPage() {
         message: 'Passwords do not match'
       })
       return
-    } else {
-      clearErrors('confirm')
     }
 
+    clearErrors('confirm')
+
     try {
-      const res = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: values.name.trim(),
-          email: values.email.trim(),
-          password: values.password
-        })
-      })
-
-      const data = await res.json().catch(() => ({}))
-
-      if (!res.ok) {
-        const message = (data && data.message) || `Signup failed (${res.status})`
-        setError('email', { type: 'server', message })
-        return
+      const payload = {
+        name: values.name.trim(),
+        email: values.email.trim(),
+        password: values.password
       }
 
-      router.push('/api/auth/signin?callbackUrl=/dashboard')
-    } catch (err) {
-      setError('email', {
-        type: 'server',
-        message: 'Network error. Please try again.'
-      })
+      const res: any = await api.post('/api/signup', payload)
+      if (res?.status === 201) {
+        toast.success('Account created successfully! Please sign in.')
+
+        setTimeout(() => {
+          router.push('/api/auth/signin?callbackUrl=/dashboard')
+        }, 1200)
+      } else {
+        toast.error(res?.message || 'An error occurred during signup.')
+      }
+    } catch (err: any) {
+      toast.error(err?.message || 'An error occurred during signup.')
     }
   }
 

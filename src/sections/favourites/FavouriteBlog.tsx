@@ -5,12 +5,15 @@ import { api } from '@/functions/api'
 import usePagination from '@/hooks/usePagination'
 import { useUser } from '@/providers/UserProvider'
 import BlogDescription from '@/utils/convert'
+import { displayLikeCount } from '@/utils/functions'
 import moment from 'moment'
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { FaArrowRightLong, FaHeart } from 'react-icons/fa6'
 import { FcLike } from 'react-icons/fc'
 import { GoHeart } from 'react-icons/go'
+import { PiUserCircleFill } from 'react-icons/pi'
 import { toast } from 'react-toastify'
 
 interface Blog {
@@ -23,6 +26,11 @@ interface Blog {
   userId: string
   likeCount: number
   likedBy: string[]
+  user: {
+    name: string
+    image: string | null
+    email: string
+  }
 }
 
 const FavouriteBlog = () => {
@@ -102,6 +110,9 @@ const FavouriteBlog = () => {
       resetOnItemsChange: true
     }
   )
+
+  const capitalizeName = (name: string) => name.toLowerCase().replace(/\b\w/g, char => char.toUpperCase())
+
   return (
     <div className='min-h-screen bg-gray-50 dark:bg-gray-900'>
       <section className='w-full'>
@@ -184,12 +195,16 @@ const FavouriteBlog = () => {
                       <h2 className='text-base xs:text-lg sm:text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2 line-clamp-2'>
                         {blog?.title}
                       </h2>
-                      <div onClick={() => handleLikeToggle(blog.id)} className='cursor-pointer'>
+                      <div
+                        onClick={() => handleLikeToggle(blog.id)}
+                        className='cursor-pointer flex flex-col text-xs items-center'
+                      >
                         {blog?.likedBy.includes(user?.id) ? (
                           <FcLike className='w-6 h-6' />
                         ) : (
                           <GoHeart className='w-6 h-6' />
                         )}
+                        <p>{displayLikeCount(blog?.likeCount || 0)}</p>
                       </div>
                     </div>
 
@@ -216,20 +231,29 @@ const FavouriteBlog = () => {
                       <FaArrowRightLong className='ml-2' />
                     </Link>
 
-                    <div
-                      className='
-                      text-xs
-                      text-gray-500 dark:text-gray-400
-                    '
-                    >
-                      {moment(blog.createdAt).format('MMM DD, YYYY')}
+                    <div className='text-xs text-gray-500 dark:text-gray-400'>
+                      {blog?.user?.image ? (
+                        <Image
+                          src={blog?.user?.image || '/person.png'}
+                          alt='Author Avatar'
+                          width={28}
+                          height={28}
+                          className='inline-block rounded-full mr-1'
+                        />
+                      ) : (
+                        <PiUserCircleFill className='w-7 h-7 inline-block rounded-full mr-1' />
+                      )}
+                      <span> {blog.user.name && capitalizeName(blog.user.name)}</span>
                     </div>
                   </div>
 
                   <div className='mt-2'>
-                    <div className='flex items-center space-x-2'>
+                    <div className='flex items-center justify-between space-x-2'>
                       <span className='bg-gray-100 text-gray-900 text-sm font-medium px-2 py-1 rounded-full'>
                         {blog?.category}
+                      </span>
+                      <span className='text-xs text-gray-500 dark:text-gray-400'>
+                        {moment(blog.createdAt).format('MMM DD, YYYY')}
                       </span>
                     </div>
                   </div>

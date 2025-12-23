@@ -43,7 +43,12 @@ export async function GET(req: Request) {
     }
 
     const blogs = await prisma.blog.findMany({
-      where: filters
+      where: filters,
+      include: {
+        user: {
+          select: { name: true, email: true, image: true }
+        }
+      }
     })
 
     return NextResponse.json(

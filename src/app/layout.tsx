@@ -30,10 +30,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ToastContainer position='top-right' autoClose={1000} newestOnTop />
         <UserProvider>
           <Navbar />
           <PageWrapper>{children}</PageWrapper>
-          <ToastContainer />
         </UserProvider>
       </body>
     </html>
