@@ -25,7 +25,7 @@ const ToolbarButton = ({
     onClick={onClick}
     title={title}
     className={`p-2 rounded transition-colors ${
-      isActive ? 'bg-blue-500 text-white hover:bg-blue-600' : 'hover:bg-blue-500'
+      isActive ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer' : 'hover:bg-blue-500 cursor-pointer'
     }`}
   >
     {children}

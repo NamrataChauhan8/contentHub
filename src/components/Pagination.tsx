@@ -55,7 +55,7 @@ export default function Pagination({
         <button
           onClick={prev}
           disabled={currentPage === 1}
-          className='px-3 py-1.5 rounded-md border disabled:opacity-50'
+          className='px-3 py-1.5 rounded-md border disabled:opacity-50 cursor-pointer'
           aria-label='Previous page'
         >
           Prev
@@ -72,7 +72,7 @@ export default function Pagination({
                 key={item}
                 onClick={() => goTo(item)}
                 aria-current={item === currentPage ? 'page' : undefined}
-                className={`px-3 py-1.5 rounded-md border ${
+                className={`cursor-pointer px-3 py-1.5 rounded-md border ${
                   item === currentPage ? 'bg-blue-600 text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -85,7 +85,7 @@ export default function Pagination({
         <button
           onClick={next}
           disabled={currentPage === totalPages}
-          className='px-3 py-1.5 rounded-md border disabled:opacity-50'
+          className='px-3 py-1.5 rounded-md border disabled:opacity-50 cursor-pointer'
           aria-label='Next page'
         >
           Next

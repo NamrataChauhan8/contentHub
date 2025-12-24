@@ -136,7 +136,11 @@ const EditProfileModal = ({ open, onClose }: Props) => {
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>
       <form onSubmit={handleSave} className='bg-white dark:bg-gray-800 rounded-xl w-[90%] sm:w-[420px] p-6 relative'>
-        <button type='button' onClick={onClose} className='absolute top-3 right-3 text-gray-400 hover:text-gray-600'>
+        <button
+          type='button'
+          onClick={onClose}
+          className='absolute top-3 right-3 text-gray-400 hover:text-gray-600 cursor-pointer'
+        >
           <IoClose size={22} />
         </button>
 
@@ -156,7 +160,7 @@ const EditProfileModal = ({ open, onClose }: Props) => {
               <button
                 type='button'
                 onClick={handleRemoveImage}
-                className='absolute -top-1 -right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 shadow-lg transition-colors'
+                className='absolute -top-1 -right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 shadow-lg transition-colors cursor-pointer'
                 title='Remove photo'
               >
                 <FiTrash2 size={14} />
@@ -192,14 +196,14 @@ const EditProfileModal = ({ open, onClose }: Props) => {
           <button
             type='button'
             onClick={onClose}
-            className='px-4 py-2 border rounded-lg dark:border-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+            className='cursor-pointer px-4 py-2 border rounded-lg dark:border-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
             disabled={saving}
           >
             Cancel
           </button>
           <button
             type='submit'
-            className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-60 disabled:cursor-not-allowed'
+            className='cursor-pointer px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-60 disabled:cursor-not-allowed'
             disabled={saving || uploading}
           >
             {saving ? 'Saving...' : 'Save'}

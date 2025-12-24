@@ -52,7 +52,7 @@ const Searchbar = ({ onSearch }: { onSearch: (title: string, category: string) =
           aria-haspopup='listbox'
           aria-expanded={open}
           onClick={() => setOpen(prev => !prev)}
-          className='flex items-center justify-between sm:justify-start gap-2 bg-neutral-100 text-gray-700 font-medium px-4 py-3 sm:border-b-0 sm:border-r border-neutral-300 hover:bg-neutral-200 transition-colors w-full sm:w-auto'
+          className='cursor-pointer flex items-center justify-between sm:justify-start gap-2 bg-neutral-100 text-gray-700 font-medium px-4 py-3 sm:border-b-0 sm:border-r border-neutral-300 hover:bg-neutral-200 transition-colors w-full sm:w-auto'
         >
           <TbCategoryFilled className='w-5 h-5' />
           <span className='hidden sm:inline'>{category || 'All Categories'}</span>

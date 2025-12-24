@@ -1,4 +1,3 @@
-// components/modals/DeleteModal.tsx
 import React from 'react'
 
 interface Props {
@@ -21,14 +20,14 @@ const DeleteModal = ({ setShowDeleteModal, showDeleteModal, onConfirm, loading, 
         <div className='flex justify-end gap-3'>
           <button
             onClick={() => setShowDeleteModal(null)}
-            className='px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition'
+            className='cursor-pointer px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition'
             disabled={loading}
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
-            className='px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition disabled:opacity-60'
+            className='cursor-pointer px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition disabled:opacity-60'
             disabled={loading}
           >
             {loading ? 'Deleting...' : 'Delete'}

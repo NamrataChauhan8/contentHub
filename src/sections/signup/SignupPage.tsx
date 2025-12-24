@@ -130,7 +130,7 @@ export default function SignupPage() {
                   e.stopPropagation()
                   setShowPass(prev => !prev)
                 }}
-                className='text-xs underline'
+                className='text-xs underline cursor-pointer'
               >
                 {showPass ? 'Hide' : 'Show'}
               </button>
@@ -188,7 +188,7 @@ export default function SignupPage() {
               <span className='mb-1 block font-medium text-gray-400'>Confirm Password</span>
               <button
                 type='button'
-                className='text-xs underline'
+                className='text-xs underline cursor-pointer'
                 onClick={e => {
                   e.stopPropagation()
                   setShowConfirm(prev => !prev)
@@ -213,7 +213,7 @@ export default function SignupPage() {
           <button
             type='submit'
             disabled={isSubmitting}
-            className='mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 text-white py-2 px-4 font-medium shadow hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition'
+            className='cursor-pointer mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 text-white py-2 px-4 font-medium shadow hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition'
           >
             {isSubmitting ? (
               <svg className='animate-spin h-4 w-4' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>

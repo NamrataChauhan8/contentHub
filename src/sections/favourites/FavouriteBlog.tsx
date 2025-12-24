@@ -15,6 +15,7 @@ import { FcLike } from 'react-icons/fc'
 import { GoHeart } from 'react-icons/go'
 import { PiUserCircleFill } from 'react-icons/pi'
 import { toast } from 'react-toastify'
+import BlogCardSkeleton from '../blogs/BlogCardSkeleton'
 
 interface Blog {
   id: string
@@ -141,16 +142,7 @@ const FavouriteBlog = () => {
       <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
         {loading ? (
           <div className='flex items-center justify-center py-12'>
-            <svg
-              className='animate-spin h-8 w-8 text-gray-500'
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              aria-hidden
-            >
-              <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-              <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8v8z' />
-            </svg>
+            <BlogCardSkeleton />
           </div>
         ) : blogs.length === 0 ? (
           <p className='text-center text-gray-500 dark:text-gray-400 py-12'>You have no favourite blogs yet.</p>

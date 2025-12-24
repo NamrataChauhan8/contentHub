@@ -306,7 +306,7 @@ export default function Comments() {
                     )}
                     <button
                       onClick={() => setReplyOpen((r: any) => ({ ...r, [c.id]: !r[c.id] }))}
-                      className='text-xs px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                      className='cursor-pointer text-xs px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700'
                       aria-expanded={!!replyOpen[c.id]}
                       aria-controls={`reply-box-${c.id}`}
                     >

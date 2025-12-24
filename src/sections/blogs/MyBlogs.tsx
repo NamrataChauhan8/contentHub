@@ -15,6 +15,7 @@ import Pagination from '@/components/Pagination'
 import BlogDescription from '@/utils/convert'
 import Searchbar from '@/components/Searchbar'
 import { displayLikeCount } from '@/utils/functions'
+import BlogCardSkeleton from './BlogCardSkeleton'
 
 interface Blog {
   id: string
@@ -135,16 +136,7 @@ const MyBlogs: React.FC = () => {
       <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
         {loading ? (
           <div className='flex items-center justify-center py-12'>
-            <svg
-              className='animate-spin h-8 w-8 text-gray-500'
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              aria-hidden
-            >
-              <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-              <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8v8z' />
-            </svg>
+            <BlogCardSkeleton />
           </div>
         ) : blogs.length === 0 ? (
           <p className='text-center text-gray-500 dark:text-gray-400 py-12'>No blogs available</p>

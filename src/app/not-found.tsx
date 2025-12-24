@@ -21,7 +21,7 @@ const E404 = () => {
             </p>
             <button
               onClick={routeM}
-              className='mt-6 px-4 py-2 bg-white text-[#1e3a8a] font-semibold rounded-md hover:bg-gray-100 transition'
+              className='mt-6 px-4 py-2 bg-white text-[#1e3a8a] font-semibold rounded-md hover:bg-gray-100 transition cursor-pointer'
             >
               Go Back to Dashboard
             </button>
