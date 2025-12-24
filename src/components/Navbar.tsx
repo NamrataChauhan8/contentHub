@@ -48,11 +48,18 @@ const Navbar = () => {
       {!hideSidebar && (
         <>
           <nav className='fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700'>
-            <div className='px-3 py-3 lg:px-5 lg:pl-3'>
+            <div className='px-3 lg:px-5 lg:pl-3'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center justify-start rtl:justify-end'>
-                  <Link href='/' className='flex ms-2 md:me-24'>
-                    <Image src={logo} className='h-8 me-3' alt='Content Hub Logo' width={70} height={100} />
+                  <Link href='/' className='flex items-center ms-2 md:me-24'>
+                    <Image
+                      src={logo}
+                      alt='Content Hub Logo'
+                      width={110}
+                      height={50}
+                      className='object-contain h-20 w-auto'
+                      priority
+                    />
                   </Link>
                 </div>
                 <div className='flex items-center'>

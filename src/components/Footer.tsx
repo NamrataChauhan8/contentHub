@@ -18,7 +18,7 @@ export default function Footer() {
           '
         >
           <p className='text-sm text-gray-400 text-center sm:text-left'>
-            © 2024 Content Hub, Inc. All rights reserved.
+            © {new Date().getFullYear()} Content Hub, Inc. All rights reserved.
           </p>
 
           <div className='flex items-center gap-4 text-gray-400'>
