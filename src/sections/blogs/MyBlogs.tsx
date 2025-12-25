@@ -128,20 +128,18 @@ const MyBlogs: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Blog Listing */}
-      <div className='mb-4'>
-        <Searchbar onSearch={handleSearch} />
-      </div>
-      <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
-        {loading ? (
-          <div className='flex items-center justify-center py-12'>
-            <BlogCardSkeleton />
+      {loading ? (
+        <div className='flex items-center justify-center py-12'>
+          <BlogCardSkeleton />
+        </div>
+      ) : blogs.length === 0 ? (
+        <p className='text-center text-gray-500 dark:text-gray-400 py-12'>No blogs available</p>
+      ) : (
+        <>
+          <div className='mb-4'>
+            <Searchbar onSearch={handleSearch} />
           </div>
-        ) : blogs.length === 0 ? (
-          <p className='text-center text-gray-500 dark:text-gray-400 py-12'>No blogs available</p>
-        ) : (
-          <>
+          <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
@@ -228,9 +226,9 @@ const MyBlogs: React.FC = () => {
                 </div>
               ))}
             </div>
-          </>
-        )}
-      </section>
+          </section>
+        </>
+      )}
     </div>
   )
 }

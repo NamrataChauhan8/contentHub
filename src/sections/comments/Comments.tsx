@@ -309,6 +309,7 @@ export default function Comments() {
                       className='cursor-pointer text-xs px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700'
                       aria-expanded={!!replyOpen[c.id]}
                       aria-controls={`reply-box-${c.id}`}
+                      disabled={loading}
                     >
                       Reply
                     </button>
@@ -427,6 +428,7 @@ export default function Comments() {
                                   [c.id]: false
                                 }))
                               }
+                              disabled={loading}
                               className='cursor-pointer text-xs px-2 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800'
                             >
                               Cancel
@@ -434,6 +436,7 @@ export default function Comments() {
                             <button
                               onClick={() => postReply(c.id)}
                               className='cursor-pointer text-xs px-3 py-1 rounded-md bg-primary-600 text-white'
+                              disabled={loading}
                             >
                               Send
                             </button>
@@ -474,6 +477,7 @@ export default function Comments() {
               <button
                 type='submit'
                 className='cursor-pointer px-4 py-2 rounded-lg border hover:bg-neutral-100 hover:text-black bg-primary-600 text-white text-sm hover:brightness-95'
+                disabled={loading}
               >
                 Post Comment
               </button>

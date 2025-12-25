@@ -105,18 +105,20 @@ const AllBlogs = () => {
 
   return (
     <>
-      <div className='mb-4'>
-        <Searchbar onSearch={handleSearch} />
-      </div>
-      <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
-        {loading ? (
+      {loading ? (
+        <>
           <div className='flex items-center justify-center py-12'>
             <BlogCardSkeleton />
           </div>
-        ) : total === 0 ? (
-          <p className='text-center text-gray-500'>No blogs available</p>
-        ) : (
-          <>
+        </>
+      ) : total === 0 ? (
+        <p className='text-center text-gray-500'>No blogs available</p>
+      ) : (
+        <>
+          <div className='mb-4'>
+            <Searchbar onSearch={handleSearch} />
+          </div>
+          <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
             {/* Pagination controls */}
             <Pagination
               currentPage={currentPage}
@@ -236,9 +238,9 @@ const AllBlogs = () => {
                 </div>
               ))}
             </div>
-          </>
-        )}
-      </section>
+          </section>
+        </>
+      )}
     </>
   )
 }
