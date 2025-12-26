@@ -1,6 +1,7 @@
 'use client'
 
 import { api } from '@/functions/api'
+import { refresh } from 'next/cache'
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 type User = {
@@ -26,7 +27,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const fetchUser = useCallback(async () => {
     try {
       setLoading(true)
-      const response = await api.get<{ user: User }>('/api/me') // assuming api is axios wrapper
+      const response = await api.get<{ user: User }>('/api/me')
       setUser(response?.user ?? null)
     } catch (error: any) {
       const status = error?.response?.status

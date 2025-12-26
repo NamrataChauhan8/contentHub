@@ -18,7 +18,7 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false)
   const [editOpen, setEditOpen] = useState(false)
 
-  const hideSidebar = pathname === '/' || pathname === '/signup' || pathname === '/api/auth/signin'
+  const hideSidebar = pathname === '/' || pathname === '/signup' || pathname === '/login'
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)

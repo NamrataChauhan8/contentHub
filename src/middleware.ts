@@ -13,14 +13,14 @@ export async function middleware(req: NextRequest) {
   }
 
   // If user is authenticated and tries to access login page, redirect to dashboard
-  if (pathname.startsWith('/api/auth/signin') && token) {
+  if (pathname.startsWith('/login') && token) {
     const dashboardUrl = new URL('/dashboard', req.url)
     return NextResponse.redirect(dashboardUrl)
   }
 
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
-      const signInUrl = new URL('/api/auth/signin', req.url)
+      const signInUrl = new URL('/login', req.url)
       signInUrl.searchParams.set('callbackUrl', '/dashboard')
       return NextResponse.redirect(signInUrl)
     }
@@ -30,5 +30,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/dashboard/:path*', '/api/auth/signin', '/signup']
+  matcher: ['/', '/dashboard/:path*', '/login', '/signup']
 }
