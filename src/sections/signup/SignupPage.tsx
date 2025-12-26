@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { api } from '@/functions/api'
+import Image from 'next/image'
+import logo from '../../assets/images/contenthub.png'
 
 type FormValues = {
   name: string
@@ -65,7 +67,7 @@ export default function SignupPage() {
         toast.success('Account created successfully! Please sign in.')
 
         setTimeout(() => {
-          router.push('/api/auth/signin?callbackUrl=/dashboard')
+          router.push('/login')
         }, 1200)
       } else {
         toast.error(res?.message || 'An error occurred during signup.')
@@ -82,6 +84,9 @@ export default function SignupPage() {
   return (
     <div className='px-4 sm:px-0 mb-10'>
       <div className='max-w-md mx-auto mt-10 p-6 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 rounded-2xl shadow-lg'>
+        <div className='mb-6 flex justify-center'>
+          <Image src={logo} alt='Logo' width={120} height={80} />
+        </div>
         <div className='mb-6'>
           <h1 className='text-2xl font-semibold'>Create your account</h1>
           <p className='text-sm text-gray-500'>Join us — it takes less than a minute.</p>
@@ -227,7 +232,7 @@ export default function SignupPage() {
 
           <p className='mt-4 text-sm text-gray-500'>
             Already have an account?
-            <Link href='/api/auth/signin?callbackUrl=/dashboard' className='font-medium text-blue-500 hover:underline'>
+            <Link href='/login' className='font-medium text-blue-500 hover:underline'>
               Sign in
             </Link>
           </p>

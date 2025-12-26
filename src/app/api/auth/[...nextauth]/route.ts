@@ -9,6 +9,9 @@ const prisma = new PrismaClient()
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: '/login'
+  },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
