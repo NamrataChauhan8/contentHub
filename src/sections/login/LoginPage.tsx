@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useUser } from '@/providers/UserProvider'
 import { FcGoogle } from 'react-icons/fc'
 import Image from 'next/image'
-import logo from '../../assets/images/contenthub.png'
+import logo from '../../assets/images/scratch.png'
 
 type FormValues = {
   email: string

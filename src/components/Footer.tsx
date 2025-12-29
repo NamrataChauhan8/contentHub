@@ -18,7 +18,7 @@ export default function Footer() {
           '
         >
           <p className='text-sm text-gray-400 text-center sm:text-left'>
-            © {new Date().getFullYear()} Content Hub, Inc. All rights reserved.
+            © {new Date().getFullYear()} Scratchpad, Inc. All rights reserved.
           </p>
 
           <div className='flex items-center gap-4 text-gray-400'>

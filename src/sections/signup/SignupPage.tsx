@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { api } from '@/functions/api'
 import Image from 'next/image'
-import logo from '../../assets/images/contenthub.png'
+import logo from '../../assets/images/scratch.png'
 
 type FormValues = {
   name: string

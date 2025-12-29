@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next/types'
-import logo from '../assets/images/contenthub.png'
+import logo from '../assets/images/scratchpad.png'
 import Footer from '@/components/Footer'
 import { FiLogIn } from 'react-icons/fi'
 
 export const metadata: Metadata = {
-  title: `Content Hub`
+  title: `Scratchpad`
 }
 
 export default function Home() {
@@ -15,12 +15,12 @@ export default function Home() {
       <div className='flex flex-1 items-center justify-center'>
         <div className='flex w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start'>
           <div className='mb-32'>
-            <Image src={logo} alt='Next.js logo' width={150} height={50} priority />
+            <Image src={logo} className='w-auto h-auto' alt='Scratchpad' width={170} height={60} priority />
           </div>
 
           <div className='flex flex-col items-center gap-6 text-center sm:items-start sm:text-left mb-32'>
             <h1 className='max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
-              Welcome to Content Hub ....!!!
+              Welcome to Scratchpad ....!!!
             </h1>
             <p className='max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400'>
               Create your Blogs with us in a few clicks.

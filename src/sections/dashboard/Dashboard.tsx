@@ -31,7 +31,7 @@ const Dashboard = () => {
           <div className='w-full px-4 sm:px-8'>
             <div className='text-center'>
               <h1 className='text-white text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight'>
-                Welcome back to Content Hub
+                Welcome back to Scratchpad
               </h1>
               <p className='mt-2 sm:mt-3 text-white/90 text-xs sm:text-sm md:text-base max-w-3xl mx-auto'>
                 Create, organize, and publish your blogs with a seamless workflow.

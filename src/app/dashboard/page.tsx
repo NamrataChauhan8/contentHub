@@ -3,7 +3,7 @@ import Dashboard from '@/sections/dashboard/Dashboard'
 import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
-  title: `Dashboard | Content Hub`
+  title: `Dashboard | Scratchpad`
 }
 
 const Page = () => <Dashboard />

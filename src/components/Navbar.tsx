@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useUser } from '../providers/UserProvider'
 import Link from 'next/link'
 import { PiUserCircleFill } from 'react-icons/pi'
-import logo from '../assets/images/contenthub.png'
+import logo from '../assets/images/scratch.png'
 import { FiLogOut } from 'react-icons/fi'
 import EditProfileModal from './modals/EditProfileModal'
 
@@ -64,10 +64,10 @@ const Navbar = () => {
                   <Link href='/' className='flex items-center ms-2 md:me-24'>
                     <Image
                       src={logo}
-                      alt='Content Hub Logo'
+                      alt='Scratchpad Logo'
                       width={110}
                       height={50}
-                      className='object-contain h-20 w-auto'
+                      className='object-contain h-15 w-auto'
                       priority
                     />
                   </Link>
