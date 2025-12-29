@@ -134,6 +134,10 @@ const FavouriteBlog = () => {
         </div>
       </section>
 
+      <div className='mb-4'>
+        <Searchbar onSearch={handleSearch} />
+      </div>
+
       {loading ? (
         <div className='flex items-center justify-center py-12'>
           <BlogCardSkeleton />
@@ -142,9 +146,6 @@ const FavouriteBlog = () => {
         <p className='text-center text-gray-500 dark:text-gray-400 py-12'>You have no favourite blogs yet.</p>
       ) : (
         <>
-          <div className='mb-4'>
-            <Searchbar onSearch={handleSearch} />
-          </div>
           <section className='max-w-6xl mx-auto px-3 sm:px-6 py-8'>
             <Pagination
               currentPage={currentPage}

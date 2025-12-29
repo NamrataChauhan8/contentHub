@@ -43,6 +43,16 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [isDropdownOpen])
 
+  const isActive = (path: string) => pathname === path
+
+  const navItemClass = (path: string) =>
+    `block px-4 py-2 text-sm transition
+   ${
+     isActive(path)
+       ? 'bg-gray-100 text-blue-600 font-medium dark:bg-gray-600 dark:text-white'
+       : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+   }`
+
   return (
     <>
       {!hideSidebar && (
@@ -100,10 +110,12 @@ const Navbar = () => {
                         </div>
                         <ul className='py-1' role='none'>
                           <li>
+                            {/** on click it should close the menu */}
                             <Link
                               href='/dashboard'
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+                              className={navItemClass('/dashboard')}
                               role='menuitem'
+                              onClick={() => setIsDropdownOpen(false)}
                             >
                               Dashboard
                             </Link>
@@ -111,8 +123,9 @@ const Navbar = () => {
                           <li>
                             <Link
                               href='/myblogs'
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+                              className={navItemClass('/myblogs')}
                               role='menuitem'
+                              onClick={() => setIsDropdownOpen(false)}
                             >
                               My Blogs
                             </Link>
@@ -120,8 +133,9 @@ const Navbar = () => {
                           <li>
                             <Link
                               href='/favourite-blogs'
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+                              className={navItemClass('/favourite-blogs')}
                               role='menuitem'
+                              onClick={() => setIsDropdownOpen(false)}
                             >
                               Favourite Blogs
                             </Link>
@@ -129,15 +143,19 @@ const Navbar = () => {
                           <li>
                             <Link
                               href='/create-blog'
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+                              className={navItemClass('/create-blog')}
                               role='menuitem'
+                              onClick={() => setIsDropdownOpen(false)}
                             >
                               Create Blog
                             </Link>
                           </li>
                           <li>
                             <button
-                              onClick={() => setEditOpen(true)}
+                              onClick={() => {
+                                setEditOpen(true)
+                                setIsDropdownOpen(false)
+                              }}
                               className='w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer'
                             >
                               Edit Profile

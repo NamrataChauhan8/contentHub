@@ -93,7 +93,7 @@ const LoginPage = () => {
           <div className='text-sm'>
             <div className='flex items-baseline justify-between mb-1'>
               <span className='font-medium text-gray-400'>Password</span>
-              <button type='button' onClick={() => setShowPass(p => !p)} className='text-xs underline'>
+              <button type='button' onClick={() => setShowPass(p => !p)} className='text-xs underline cursor-pointer'>
                 {showPass ? 'Hide' : 'Show'}
               </button>
             </div>
@@ -113,7 +113,7 @@ const LoginPage = () => {
           <button
             type='submit'
             disabled={isSubmitting}
-            className='mt-2 rounded-xl bg-blue-600 text-white py-2 font-medium shadow hover:bg-blue-700 disabled:opacity-60'
+            className='mt-2 rounded-xl bg-blue-600 text-white py-2 font-medium shadow hover:bg-blue-700 disabled:opacity-60 cursor-pointer'
           >
             {isSubmitting ? 'Signing in...' : 'Sign in'}
           </button>
@@ -132,7 +132,7 @@ const LoginPage = () => {
           <button
             type='button'
             onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-            className='flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 py-2 px-4 font-medium shadow-sm transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:border-gray-700 dark:hover:bg-gray-800'
+            className='cursor-pointer flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 py-2 px-4 font-medium shadow-sm transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:border-gray-700 dark:hover:bg-gray-800'
             aria-label='Continue with Google'
           >
             <FcGoogle className='text-xl' />
